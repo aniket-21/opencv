@@ -61,42 +61,42 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         cv2.drawContours(frame, [box], 0, (0, 255, 0), 2)
         #cv2.drawContours(frame, contours, i, (0, 255, 0), 3)
 
-	#Check center and move the bot
+	    #Check center and move the bot
         if(center[1] < 280):
-	    #forward 0-1-0-1
-	    wpi.digitalWrite(pin1, 0)
-	    wpi.digitalWrite(pin2, 1)
-	    wpi.digitalWrite(pin3, 0)
-	    wpi.digitalWrite(pin4, 1)
-	    wpi.delay(250)
-	    wpi.digitalWrite(pin1, 0)
-	    wpi.digitalWrite(pin2, 0)
-	    wpi.digitalWrite(pin3, 0)
-	    wpi.digitalWrite(pin4, 0)
+            #forward 0-1-0-1
+            wpi.digitalWrite(pin1, 0)
+            wpi.digitalWrite(pin2, 1)
+            wpi.digitalWrite(pin3, 0)
+            wpi.digitalWrite(pin4, 1)
+            wpi.delay(250)
+            wpi.digitalWrite(pin1, 0)
+            wpi.digitalWrite(pin2, 0)
+            wpi.digitalWrite(pin3, 0)
+            wpi.digitalWrite(pin4, 0)
 
         if(center[0] < 310):
-	    #right 1-1-0-1
-	    wpi.digitalWrite(pin1, 1)
-	    wpi.digitalWrite(pin2, 1)
-	    wpi.digitalWrite(pin3, 0)
-	    wpi.digitalWrite(pin4, 1)    
-	    wpi.delay(100)    
-	    wpi.digitalWrite(pin1, 0)
-	    wpi.digitalWrite(pin2, 0)
-	    wpi.digitalWrite(pin3, 0)
-	    wpi.digitalWrite(pin4, 0)
+            #right 1-1-0-1
+            wpi.digitalWrite(pin1, 1)
+            wpi.digitalWrite(pin2, 1)
+            wpi.digitalWrite(pin3, 0)
+            wpi.digitalWrite(pin4, 1)
+            wpi.delay(100)
+            wpi.digitalWrite(pin1, 0)
+            wpi.digitalWrite(pin2, 0)
+            wpi.digitalWrite(pin3, 0)
+            wpi.digitalWrite(pin4, 0)
 	    
         if(center[0] > 340):
-	    #right 1-1-0-1
-	    wpi.digitalWrite(pin1, 0)
-	    wpi.digitalWrite(pin2, 1)
-	    wpi.digitalWrite(pin3, 1)
-	    wpi.digitalWrite(pin4, 1) 
-	    wpi.delay(100) 
-	    wpi.digitalWrite(pin1, 0)
-	    wpi.digitalWrite(pin2, 0)
-	    wpi.digitalWrite(pin3, 0)
-	    wpi.digitalWrite(pin4, 0)
+            #right 1-1-0-1
+            wpi.digitalWrite(pin1, 0)
+            wpi.digitalWrite(pin2, 1)
+            wpi.digitalWrite(pin3, 1)
+            wpi.digitalWrite(pin4, 1)
+            wpi.delay(100)
+            wpi.digitalWrite(pin1, 0)
+            wpi.digitalWrite(pin2, 0)
+            wpi.digitalWrite(pin3, 0)
+            wpi.digitalWrite(pin4, 0)
 
     # Display the resulting frame
     # cv2.imshow('erode', erosion)
