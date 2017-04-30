@@ -1,7 +1,8 @@
 import numpy as np
 import cv2
-
-
+import time
+from picamera.array import PiRGBArray
+from picamera import PiCamera
 
 def nothing(x):
     pass
@@ -17,15 +18,22 @@ cv2.createTrackbar('Hmax','HSV',50,255,nothing)
 cv2.createTrackbar('Smax','HSV',50,255,nothing)
 cv2.createTrackbar('Vmax','HSV',50,255,nothing)
 
+#cap = cv2.VideoCapture(0)
+#cap.set(cv2.CAP_PROP_FRAME_WIDTH,640)
+#cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
 
+#Use Pi Camera
+camera = PiCamera()
+camera.resolution = (640,480)
+camera.framerate = 32
+rawCapture = PiRGBArray(camera, size=(640, 480))
 
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH,640)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
+time.sleep(0.1)
 
-while(True):
+for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
     # Capture frame-by-frame
-    ret, frame = cap.read()
+    frame = rawCapture.array
+
     cv2.resize(frame, (100,50)) #resize
     imgHSV = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV) #BGR -> HSV
 
@@ -46,9 +54,11 @@ while(True):
     #cv2.imshow('closing', frame)
     cv2.imshow('Result', mask)
 
+    rawCapture.truncate(0)
+
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 # When everything done, release the capture
-cap.release()
+#cap.release()
 cv2.destroyAllWindows()
